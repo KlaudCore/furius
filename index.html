@@ -82,7 +82,7 @@
     .hero-model { height:700px; position:relative; }
     #scene-container { width:100%; height:100%; }
 
-    /* ===== COLLECTION (con imágenes) ===== */
+    /* ===== COLECCIÓN (con imágenes reales) ===== */
     .collection { padding:160px 0; background:linear-gradient(180deg,#050505,#090909); }
     .section-header { text-align:center; margin-bottom:100px; }
     .section-tag { color:#C7A86B; text-transform:uppercase; letter-spacing:.3rem; font-size:.85rem; margin-bottom:15px; }
@@ -104,29 +104,30 @@
       border-color:rgba(199,168,107,.4);
       box-shadow:0 0 50px rgba(199,168,107,.12);
     }
-    .perfume-card .card-image {
-      position:absolute; inset:0; display:flex; align-items:center; justify-content:center; overflow:hidden;
+    .card-image {
+      position:relative; width:100%; height:100%;
+      display:flex; align-items:center; justify-content:center; overflow:hidden;
     }
-    .perfume-card .card-image img {
+    .card-image img {
       width:100%; height:100%; object-fit:cover;
       transition:transform .6s, filter .6s;
       filter:brightness(0.85) saturate(0.9);
-    }
-    /* fallback si la imagen no carga: se ve el color de fondo y un texto */
-    .perfume-card .card-image .fallback-text {
-      position:absolute; color:#C7A86B; font-family:'Bodoni Moda',serif; font-size:2rem;
-      letter-spacing:.3rem; text-shadow:0 0 30px rgba(199,168,107,.3);
-      pointer-events:none;
     }
     .perfume-card:hover .card-image img {
       transform:scale(1.05);
       filter:brightness(1.1) saturate(1.2);
     }
+    /* fallback si no carga la imagen */
+    .card-image .fallback-text {
+      position:absolute; color:#C7A86B; font-family:'Bodoni Moda',serif; font-size:2rem;
+      letter-spacing:.3rem; text-shadow:0 0 30px rgba(199,168,107,.3);
+      pointer-events:none; z-index:1;
+    }
     .card-badge {
       position:absolute; top:20px; right:20px;
       background:#C7A86B; color:#000; padding:8px 16px; border-radius:30px;
       font-size:.7rem; font-weight:600; letter-spacing:.1rem; text-transform:uppercase;
-      z-index:5; box-shadow:0 0 20px rgba(199,168,107,.4);
+      z-index:10; box-shadow:0 0 20px rgba(199,168,107,.4);
     }
     .card-overlay {
       position:absolute; inset:0;
@@ -162,9 +163,7 @@
     }
     .perfume-card:hover .card-btn { opacity:1; transform:translateY(0); }
     .card-btn:hover { background:#C7A86B; color:#000; box-shadow:0 0 40px rgba(199,168,107,.3); }
-    .perfume-card .card-image,
-    .perfume-card .card-overlay,
-    .perfume-card .card-content { backface-visibility:hidden; }
+    .card-image, .card-overlay, .card-content { backface-visibility:hidden; }
 
     /* ===== LEGACY ===== */
     .legacy { padding:220px 0; background:#070707; overflow:hidden; }
@@ -367,7 +366,7 @@
   <!-- HERO -->
   <section class="hero" id="hero">
     <video class="hero-video" autoplay muted loop playsinline>
-      <source src="/furius/Images/hero.webm" />
+      <source src="/furius/Images/hero.webm" type="video/mp4" />
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -383,7 +382,7 @@
     </div>
   </section>
 
-  <!-- COLECCIÓN (con imágenes y fallback) -->
+  <!-- COLECCIÓN -->
   <section class="collection" id="collection">
     <div class="container">
       <div class="section-header">
@@ -396,7 +395,7 @@
         <!-- Noir -->
         <div class="perfume-card">
           <div class="card-image">
-            <img src="/furius/Images/Noir.png" alt="Noir" />
+            <img src="/furius/Images/noir.png" alt="Noir" />
             <span class="fallback-text">NOIR</span>
             <div class="card-badge">Edición Limitada</div>
           </div>
@@ -412,7 +411,7 @@
         <!-- Titan -->
         <div class="perfume-card">
           <div class="card-image">
-            <img src="/furius/Images/Titan.png" alt="Titan" />
+            <img src="/furius/Images/titan.png" alt="Titan" />
             <span class="fallback-text">TITAN</span>
             <div class="card-badge">Nuevo</div>
           </div>
@@ -428,7 +427,7 @@
         <!-- Obsidian -->
         <div class="perfume-card">
           <div class="card-image">
-            <img src="/furius/Images/Obsidian.png" alt="Obsidian" />
+            <img src="/furius/Images/obsidian.jpg" alt="Obsidian" />
             <span class="fallback-text">OBSIDIAN</span>
             <div class="card-badge">Exclusivo</div>
           </div>
@@ -479,7 +478,9 @@
         <div class="notes-line"></div>
         <!-- Bergamota -->
         <div class="note-item">
-          <div class="note-image"><img src="/furius/Images/bergamot.png" alt="Bergamota" /></div>
+          <div class="note-image">
+            <img src="/furius/Images/bergamot.png" alt="Bergamota" />
+          </div>
           <div class="note-dot"></div>
           <div class="note-content">
             <div class="note-type">Nota de salida</div>
@@ -489,7 +490,9 @@
         </div>
         <!-- Pimienta -->
         <div class="note-item">
-          <div class="note-image"><img src="/furius/Images/pepper.png" alt="Pimienta negra" /></div>
+          <div class="note-image">
+            <img src="/furius/Images/pepper.png" alt="Pimienta negra" />
+          </div>
           <div class="note-dot"></div>
           <div class="note-content">
             <div class="note-type">Nota de corazón</div>
@@ -499,7 +502,9 @@
         </div>
         <!-- Oud -->
         <div class="note-item">
-          <div class="note-image"><img src="/furius/Images/oud.png" alt="Oud" /></div>
+          <div class="note-image">
+            <img src="/furius/Images/oud.png" alt="Oud" />
+          </div>
           <div class="note-dot"></div>
           <div class="note-content">
             <div class="note-type">Nota principal</div>
@@ -509,7 +514,9 @@
         </div>
         <!-- Ámbar -->
         <div class="note-item">
-          <div class="note-image"><img src="/furius/Images/amber.png" alt="Ámbar" /></div>
+          <div class="note-image">
+            <img src="/furius/Images/amber.png" alt="Ámbar" />
+          </div>
           <div class="note-dot"></div>
           <div class="note-content">
             <div class="note-type">Nota de fondo</div>
@@ -579,7 +586,7 @@
   <!-- PARTICLES -->
   <canvas id="particles"></canvas>
 
-  <!-- ===== SCRIPTS ===== -->
+  <!-- SCRIPTS -->
   <script type="module">
     // Loader
     const loader = document.getElementById('loader');
@@ -620,7 +627,7 @@
         scene.add(fillLight);
 
         const loader = new GLTFLoader();
-        loader.load('./models/furius-man.glb', (gltf) => {
+        loader.load('/furius/models/furius-man.glb', (gltf) => {
           perfume = gltf.scene;
           perfume.scale.set(2, 2, 2);
           perfume.position.y = -1;
