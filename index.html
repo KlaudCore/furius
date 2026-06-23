@@ -122,22 +122,17 @@
   justify-content:center;
   overflow:hidden;
 }
-
-/* ----- TODAS LAS IMÁGENES CON LA MISMA PROPIEDADES ----- */
 .card-image img {
   width:100%;
   height:100%;
   object-fit:cover;
   transition:transform .6s, filter .6s;
-  /* Ajusta estos valores para igualar brillo y contraste */
-  filter: brightness(0.9) contrast(1.1) saturate(1);
+  filter:brightness(0.85) saturate(0.9);
 }
 .perfume-card:hover .card-image img {
   transform:scale(1.05);
-  filter: brightness(1.05) contrast(1.1) saturate(1.1);
+  filter:brightness(1.1) saturate(1.2);
 }
-
-/* Texto de fallback */
 .card-image .fallback-text {
   position:absolute;
   color:#C7A86B;
@@ -168,7 +163,7 @@
 .card-overlay {
   position:absolute;
   inset:0;
-  background:linear-gradient(180deg, transparent 25%, rgba(0,0,0,.5) 100%);
+  background:linear-gradient(180deg, transparent 20%, rgba(0,0,0,.5) 100%);
   z-index:2;
   transition:background .6s;
 }
@@ -229,6 +224,20 @@
 .card-btn:hover { background:#C7A86B; color:#000; box-shadow:0 0 40px rgba(199,168,107,.3); }
 
 .card-image, .card-overlay, .card-content { backface-visibility:hidden; }
+
+/* Responsive */
+@media (max-width:992px) {
+  .collection-grid { grid-template-columns:1fr; }
+  .perfume-card { height:550px; }
+}
+@media (max-width:768px) {
+  .perfume-card { height:480px; }
+  .card-content { left:25px; right:25px; bottom:25px; }
+  .card-name { font-size:1.8rem; }
+  .card-badge { top:15px; right:15px; font-size:.6rem; padding:6px 12px; }
+  .card-btn { opacity:1; transform:translateY(0); padding:10px 25px; font-size:.7rem; }
+  .perfume-card:hover .card-content { transform:translateY(0); }
+}
 
 /* Responsive */
 @media (max-width:992px) {
@@ -480,10 +489,11 @@
     </div>
 
     <div class="collection-grid">
-      <!-- Noir -->
+
+      <!-- TARJETA 1: NOIR -->
       <div class="perfume-card">
         <div class="card-image">
-          <img src="/furius/Images/noir.png" alt="Noir" />
+          <img src="/furius/Images/noir.jpg" alt="Noir" />
           <span class="fallback-text">NOIR</span>
           <div class="card-badge">Edición Limitada</div>
         </div>
@@ -496,10 +506,10 @@
         </div>
       </div>
 
-      <!-- Titan -->
+      <!-- TARJETA 2: TITAN (exactamente igual que Noir) -->
       <div class="perfume-card">
         <div class="card-image">
-          <img src="/furius/Images/titan.png" alt="Titan" />
+          <img src="/furius/Images/titan.jpg" alt="Titan" />
           <span class="fallback-text">TITAN</span>
           <div class="card-badge">Nuevo</div>
         </div>
@@ -512,10 +522,10 @@
         </div>
       </div>
 
-      <!-- Obsidian -->
+      <!-- TARJETA 3: OBSIDIAN (exactamente igual que Noir) -->
       <div class="perfume-card">
         <div class="card-image">
-          <img src="/furius/Images/obsidian.png" alt="Obsidian" />
+          <img src="/furius/Images/obsidian.jpg" alt="Obsidian" />
           <span class="fallback-text">OBSIDIAN</span>
           <div class="card-badge">Exclusivo</div>
         </div>
@@ -527,6 +537,7 @@
           <a href="#" class="card-btn">Explorar</a>
         </div>
       </div>
+
     </div>
   </div>
 </section>
