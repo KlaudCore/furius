@@ -82,7 +82,7 @@
     .hero-model { height:700px; position:relative; }
     #scene-container { width:100%; height:100%; }
 
-    /* ===== COLECCIÓN ===== */
+    /* ===== COLECCIÓN (con imágenes PNG) ===== */
     .collection { padding:160px 0; background:linear-gradient(180deg,#050505,#090909); }
     .section-header { text-align:center; margin-bottom:100px; }
     .section-tag { color:#C7A86B; text-transform:uppercase; letter-spacing:.3rem; font-size:.85rem; margin-bottom:15px; }
@@ -93,6 +93,7 @@
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:40px;
+      align-items:stretch;
     }
 
     .perfume-card {
@@ -102,16 +103,22 @@
       border-radius:24px;
       background:linear-gradient(180deg, #1a1a1a, #0a0a0a);
       border:1px solid rgba(255,255,255,.08);
-      transition:.6s cubic-bezier(0.23,1,0.32,1);
+      transition:transform .6s cubic-bezier(0.23,1,0.32,1), border-color .6s, box-shadow .6s;
       cursor:pointer;
       transform-style:preserve-3d;
       perspective:1000px;
-      opacity:1 !important; /* Forzar opacidad 1, elimina cualquier inline */
+      opacity:1 !important; /* Forzar opacidad */
+      transform:none !important; /* Eliminar transformaciones extrañas */
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
     }
     .perfume-card:hover {
-      transform:translateY(-15px);
+      transform:translateY(-15px) !important;
       border-color:rgba(199,168,107,.4);
       box-shadow:0 0 50px rgba(199,168,107,.12);
+      opacity:1 !important;
     }
 
     .card-image {
@@ -181,6 +188,7 @@
       z-index:3;
       transform:translateY(20px);
       transition:transform .5s ease;
+      width:auto;
     }
     .perfume-card:hover .card-content { transform:translateY(0); }
 
@@ -224,8 +232,6 @@
     }
     .perfume-card:hover .card-btn { opacity:1; transform:translateY(0); }
     .card-btn:hover { background:#C7A86B; color:#000; box-shadow:0 0 40px rgba(199,168,107,.3); }
-
-    .card-image, .card-overlay, .card-content { backface-visibility:hidden; }
 
     /* ===== LEGACY ===== */
     .legacy { padding:220px 0; background:#070707; overflow:hidden; }
@@ -274,59 +280,47 @@
     .note-type { color:#C7A86B; letter-spacing:.25rem; text-transform:uppercase; font-size:.85rem; margin-bottom:20px; }
     .note-description { color:#999; line-height:2; }
 
-    /* ===== CAMPAÑA ===== */
-.campaign {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-  background: radial-gradient(circle at 70% 30%, #1a1a1a, #000);
-}
+    /* ===== CAMPAÑA (con video WEBM) ===== */
+    .campaign {
+      position:relative; height:100vh; overflow:hidden;
+      background:radial-gradient(circle at 70% 30%, #1a1a1a, #000);
+    }
+    .campaign-video {
+      position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+      opacity:0.7; z-index:1;
+    }
+    .campaign-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.7), rgba(0,0,0,.4), rgba(0,0,0,.85));
+      z-index:2;
+    }
+    .campaign-content {
+      position:relative; z-index:10; height:100%;
+      display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+      padding:0 30px;
+    }
+    .campaign-title {
+      font-family:'Bodoni Moda',serif; font-size:clamp(4rem,10vw,10rem);
+      line-height:.9; max-width:1200px; margin-bottom:40px;
+    }
+    .campaign-title span { display:block; }
+    .campaign-text { max-width:800px; font-size:1.15rem; line-height:2; color:#ddd; margin-bottom:50px; }
+    .campaign-btn {
+      padding:20px 50px; border:1px solid #C7A86B; background:transparent; color:#C7A86B;
+      font-size:.95rem; letter-spacing:.15rem; text-transform:uppercase; cursor:pointer; transition:.4s;
+    }
+    .campaign-btn:hover { background:#C7A86B; color:#000; }
 
-.campaign-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.7; /* Aumentado de 0.5 a 0.7 para mejor visibilidad */
-  z-index: 1;
-}
-
-.campaign-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,.7), rgba(0,0,0,.4), rgba(0,0,0,.85));
-  z-index: 2;
-}
-
-.campaign-content {
-  position: relative;
-  z-index: 10;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 0 30px;
-}
-
-/* Fallback si no hay vídeo */
-.video-fallback {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle at 70% 30%, #1a1a1a, #000);
-  color: #C7A86B;
-  font-family: 'Bodoni Moda', serif;
-  font-size: clamp(3rem, 8vw, 8rem);
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.5;
-  letter-spacing: .2rem;
-}
+    /* Fallback si no hay vídeo */
+    .video-fallback {
+      position:absolute; inset:0; z-index:1;
+      display:flex; align-items:center; justify-content:center;
+      background:radial-gradient(circle at 70% 30%, #1a1a1a, #000);
+      color:#C7A86B; font-family:'Bodoni Moda',serif;
+      font-size:clamp(3rem,8vw,8rem);
+      opacity:0.5;
+      pointer-events:none;
+    }
 
     /* ===== CONTACT ===== */
     .contact { padding:220px 0 140px; background:linear-gradient(180deg,#050505,#090909); }
@@ -438,10 +432,10 @@
 
 <body>
 
-  <!-- LOADER -->
+  <!-- ===== LOADER ===== -->
   <div class="loader" id="loader"><h1>FURIUS MAN</h1></div>
 
-  <!-- NAVBAR -->
+  <!-- ===== NAVBAR ===== -->
   <nav class="navbar">
     <div class="logo">FURIUS MAN</div>
     <ul class="nav-links">
@@ -452,10 +446,10 @@
     </ul>
   </nav>
 
-  <!-- HERO -->
+  <!-- ===== HERO ===== -->
   <section class="hero" id="hero">
     <video class="hero-video" autoplay muted loop playsinline>
-      <source src="/furius/Images/hero.webm" />
+      <source src="/furius/Images/hero.mp4" type="video/mp4" />
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -471,7 +465,7 @@
     </div>
   </section>
 
-  <!-- COLECCIÓN -->
+  <!-- ===== COLECCIÓN ===== -->
   <section class="collection" id="collection">
     <div class="container">
       <div class="section-header">
@@ -485,6 +479,7 @@
         <div class="perfume-card">
           <div class="card-image">
             <img src="/furius/Images/noir.png" alt="Noir" />
+            <div class="fallback-text">NOIR</div>
             <div class="card-badge">Edición Limitada</div>
           </div>
           <div class="card-overlay"></div>
@@ -500,6 +495,7 @@
         <div class="perfume-card">
           <div class="card-image">
             <img src="/furius/Images/titan.png" alt="Titan" />
+            <div class="fallback-text">TITAN</div>
             <div class="card-badge">Nuevo</div>
           </div>
           <div class="card-overlay"></div>
@@ -515,6 +511,7 @@
         <div class="perfume-card">
           <div class="card-image">
             <img src="/furius/Images/obsidian.png" alt="Obsidian" />
+            <div class="fallback-text">OBSIDIAN</div>
             <div class="card-badge">Exclusivo</div>
           </div>
           <div class="card-overlay"></div>
@@ -529,12 +526,12 @@
     </div>
   </section>
 
-  <!-- LEGACY -->
+  <!-- ===== LEGACY ===== -->
   <section class="legacy" id="legacy">
     <div class="container">
       <div class="legacy-grid">
         <div class="legacy-image">
-          <img src="/furius/Images/legacy.png" alt="Legado" />
+          <img src="/furius/Images/legacy.jpg" alt="Legado" />
           <div class="legacy-overlay"></div>
         </div>
         <div class="legacy-content">
@@ -552,7 +549,7 @@
     </div>
   </section>
 
-  <!-- NOTES -->
+  <!-- ===== NOTES ===== -->
   <section class="notes" id="notes">
     <div class="container">
       <div class="notes-header">
@@ -564,7 +561,7 @@
         <div class="notes-line"></div>
         <!-- Bergamota -->
         <div class="note-item">
-          <div class="note-image"><img src="/furius/Images/bergamot.png" alt="Bergamota" /></div>
+          <div class="note-image"><img src="/furius/Images/bergamot.jpg" alt="Bergamota" /></div>
           <div class="note-dot"></div>
           <div class="note-content">
             <div class="note-type">Nota de salida</div>
@@ -574,7 +571,7 @@
         </div>
         <!-- Pimienta -->
         <div class="note-item">
-          <div class="note-image"><img src="/furius/Images/pepper.png" alt="Pimienta negra" /></div>
+          <div class="note-image"><img src="/furius/Images/pepper.jpg" alt="Pimienta negra" /></div>
           <div class="note-dot"></div>
           <div class="note-content">
             <div class="note-type">Nota de corazón</div>
@@ -584,7 +581,7 @@
         </div>
         <!-- Oud -->
         <div class="note-item">
-          <div class="note-image"><img src="/furius/Images/oud.png" alt="Oud" /></div>
+          <div class="note-image"><img src="/furius/Images/oud.jpg" alt="Oud" /></div>
           <div class="note-dot"></div>
           <div class="note-content">
             <div class="note-type">Nota principal</div>
@@ -594,7 +591,7 @@
         </div>
         <!-- Ámbar -->
         <div class="note-item">
-          <div class="note-image"><img src="/furius/Images/amber.png" alt="Ámbar" /></div>
+          <div class="note-image"><img src="/furius/Images/amber.jpg" alt="Ámbar" /></div>
           <div class="note-dot"></div>
           <div class="note-content">
             <div class="note-type">Nota de fondo</div>
@@ -606,27 +603,22 @@
     </div>
   </section>
 
-<!-- ===== CAMPAÑA ===== -->
-<section class="campaign">
-  <video class="campaign-video" autoplay muted loop playsinline>
-    <source src="/furius/Images/campa.webm" type="video/webm" />
-    <!-- Fallback si el webm no funciona -->
-    <source src="/furius/Images/campaign.mp4" type="video/mp4" />
-    <!-- Texto de respaldo si no hay vídeo -->
-    <div class="video-fallback">NO PARA TODOS</div>
-  </video>
-  <div class="campaign-overlay"></div>
-  <div class="campaign-content">
-    <h2 class="campaign-title">
-      <span>NO PARA</span>
-      <span>TODOS.</span>
-    </h2>
-    <p class="campaign-text">Creado para quienes dejan una huella imborrable. Una fragancia que trasciende tendencias y define el carácter.</p>
-    <button class="campaign-btn">Descubre la experiencia</button>
-  </div>
-</section>
+  <!-- ===== CAMPAÑA ===== -->
+  <section class="campaign">
+    <video class="campaign-video" autoplay muted loop playsinline>
+      <source src="/furius/Images/campa.webm" type="video/webm" />
+      <source src="/furius/Images/campaign.mp4" type="video/mp4" />
+      <div class="video-fallback">NO PARA TODOS</div>
+    </video>
+    <div class="campaign-overlay"></div>
+    <div class="campaign-content">
+      <h2 class="campaign-title"><span>NO PARA</span><span>TODOS.</span></h2>
+      <p class="campaign-text">Creado para quienes dejan una huella imborrable. Una fragancia que trasciende tendencias y define el carácter.</p>
+      <button class="campaign-btn">Descubre la experiencia</button>
+    </div>
+  </section>
 
-  <!-- CONTACT -->
+  <!-- ===== CONTACT ===== -->
   <section class="contact" id="contact">
     <div class="container">
       <div class="contact-grid">
@@ -664,14 +656,14 @@
     </div>
   </section>
 
-  <!-- CURSOR -->
+  <!-- ===== CURSOR ===== -->
   <div class="cursor" id="cursor"></div>
   <div class="cursor-label" id="cursorLabel">Explorar</div>
 
-  <!-- PARTICLES -->
+  <!-- ===== PARTICLES ===== -->
   <canvas id="particles"></canvas>
 
-  <!-- SCRIPTS -->
+  <!-- ===== SCRIPTS ===== -->
   <script type="module">
     // Loader
     const loader = document.getElementById('loader');
@@ -749,22 +741,38 @@
     }
     initThree();
 
-    // GSAP
+    // GSAP (sin afectar a las tarjetas)
     gsap.registerPlugin(ScrollTrigger);
     gsap.from('.navbar', { y: -100, opacity: 0, duration: 1.2 });
     gsap.from('.hero-title', { opacity: 0, y: 100, duration: 1.3, delay: 1 });
     gsap.from('.hero-text', { opacity: 0, y: 50, duration: 1, delay: 1.3 });
     gsap.from('.hero-btn', { opacity: 0, y: 50, duration: 1, delay: 1.6 });
 
+    // Collection - solo aparición, sin modificar opacidad ni transform después
     gsap.from('.section-header', { opacity: 0, y: 100, duration: 1.2, scrollTrigger: { trigger: '.collection', start: 'top 75%' } });
-    gsap.from('.perfume-card', { opacity: 0, y: 50, duration: 1, stagger: 0.2, scrollTrigger: { trigger: '.collection-grid', start: 'top 80%'  } });
+    gsap.from('.perfume-card', {
+      opacity: 0,
+      y: 120,
+      duration: 1.2,
+      stagger: 0.2,
+      scrollTrigger: { trigger: '.collection-grid', start: 'top 80%' },
+      onComplete: () => {
+        // Asegurar que después de la animación vuelvan a opacidad 1 y sin transform
+        document.querySelectorAll('.perfume-card').forEach(c => {
+          c.style.opacity = '1';
+          c.style.transform = 'none';
+        });
+      }
+    });
 
+    // Legacy (parallax solo en la imagen)
     gsap.from('.legacy-title', { y: 120, opacity: 0, duration: 1.3, scrollTrigger: { trigger: '.legacy', start: 'top 70%' } });
     gsap.from('.legacy-text', { y: 60, opacity: 0, duration: 1, delay: 0.2, scrollTrigger: { trigger: '.legacy', start: 'top 70%' } });
     gsap.from('.legacy-quote', { opacity: 0, x: -80, duration: 1.2, scrollTrigger: { trigger: '.legacy', start: 'top 70%' } });
     gsap.from('.stat', { opacity: 0, y: 50, stagger: 0.2, duration: 1, scrollTrigger: { trigger: '.legacy-stats', start: 'top 80%' } });
     gsap.to('.legacy-image img', { y: -120, ease: 'none', scrollTrigger: { trigger: '.legacy', start: 'top bottom', end: 'bottom top', scrub: true } });
 
+    // Notes
     gsap.utils.toArray('.note-item').forEach(item => {
       gsap.from(item, { opacity: 0, y: 120, duration: 1.2, scrollTrigger: { trigger: item, start: 'top 75%' } });
     });
@@ -775,16 +783,18 @@
       gsap.to(img, { y: -80, ease: 'none', scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: true } });
     });
 
+    // Campaign
     gsap.from('.campaign-title', { opacity: 0, y: 120, duration: 1.4, scrollTrigger: { trigger: '.campaign', start: 'top 70%' } });
     gsap.from('.campaign-text', { opacity: 0, y: 60, duration: 1, delay: 0.2, scrollTrigger: { trigger: '.campaign', start: 'top 70%' } });
     gsap.from('.campaign-btn', { opacity: 0, y: 40, duration: 1, delay: 0.4, scrollTrigger: { trigger: '.campaign', start: 'top 70%' } });
     gsap.to('.campaign-video', { scale: 1.15, ease: 'none', scrollTrigger: { trigger: '.campaign', start: 'top bottom', end: 'bottom top', scrub: true } });
 
+    // Contact
     gsap.from('.contact-title', { opacity: 0, y: 80, duration: 1.2, scrollTrigger: { trigger: '.contact', start: 'top 75%' } });
     gsap.from('.contact-form', { opacity: 0, x: 100, duration: 1.2, scrollTrigger: { trigger: '.contact-form', start: 'top 80%' } });
     gsap.from('.newsletter', { opacity: 0, y: 100, duration: 1.2, scrollTrigger: { trigger: '.newsletter', start: 'top 80%' } });
 
-    // Hover 3D
+    // Hover 3D en tarjetas (solo efecto visual, no modifica opacidad)
     document.querySelectorAll('.perfume-card').forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
@@ -796,11 +806,10 @@
       });
       card.addEventListener('mouseleave', () => {
         card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-        card.style.opacity = '1'; // Asegura que la opacidad vuelva a 1
       });
     });
 
-    // Cursor
+    // Cursor personalizado
     const cursor = document.getElementById('cursor');
     const cursorLabel = document.getElementById('cursorLabel');
     if (cursor && cursorLabel) {
@@ -816,7 +825,7 @@
       });
     }
 
-    // Particles
+    // Partículas
     const canvas = document.getElementById('particles');
     if (canvas) {
       const ctx = canvas.getContext('2d');
