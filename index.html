@@ -256,29 +256,49 @@
     .stat-label { letter-spacing:.15rem; font-size:.8rem; color:#888; text-transform:uppercase; }
 
     /* ===== NOTES ===== */
-    .notes { padding:220px 0; background:radial-gradient(circle at center, rgba(199,168,107,.05), transparent 60%), #050505; }
-    .notes-header { text-align:center; margin-bottom:140px; }
-    .notes-wrapper { position:relative; max-width:1000px; margin:auto; }
-    .notes-line {
-      position:absolute; left:50%; top:0; bottom:0; width:2px;
-      background:linear-gradient(180deg, transparent, #C7A86B, transparent); transform:translateX(-50%);
-    }
-    .note-item { position:relative; display:flex; align-items:center; justify-content:space-between; margin-bottom:180px; }
-    .note-item:nth-child(even) { flex-direction:row-reverse; }
-    .note-dot {
-      position:absolute; left:50%; top:50%; width:28px; height:28px; border-radius:50%;
-      background:#C7A86B; transform:translate(-50%,-50%);
-      box-shadow:0 0 40px rgba(199,168,107,.8), 0 0 80px rgba(199,168,107,.3);
-    }
-    .note-image {
-      width:420px; height:520px; border-radius:28px; overflow:hidden;
-      border:1px solid rgba(255,255,255,.08); background:#1a1a1a;
-    }
-    .note-image img { width:100%; height:100%; object-fit:cover; }
-    .note-content { width:420px; }
-    .note-name { font-family:'Bodoni Moda',serif; font-size:3rem; margin-bottom:20px; }
-    .note-type { color:#C7A86B; letter-spacing:.25rem; text-transform:uppercase; font-size:.85rem; margin-bottom:20px; }
-    .note-description { color:#999; line-height:2; }
+.notes { padding:220px 0; background:radial-gradient(circle at center, rgba(199,168,107,.05), transparent 60%), #050505; }
+.notes-header { text-align:center; margin-bottom:140px; }
+.notes-wrapper { position:relative; max-width:1000px; margin:auto; }
+.notes-line {
+  position:absolute; left:50%; top:0; bottom:0; width:2px;
+  background:linear-gradient(180deg, transparent, #C7A86B, transparent); transform:translateX(-50%);
+}
+.note-item { position:relative; display:flex; align-items:center; justify-content:space-between; margin-bottom:180px; }
+.note-item:nth-child(even) { flex-direction:row-reverse; }
+.note-dot {
+  position:absolute; left:50%; top:50%; width:28px; height:28px; border-radius:50%;
+  background:#C7A86B; transform:translate(-50%,-50%);
+  box-shadow:0 0 40px rgba(199,168,107,.8), 0 0 80px rgba(199,168,107,.3);
+}
+
+/* CONTENEDOR DE LA IMAGEN (CORREGIDO) */
+.note-image {
+  width: 420px;
+  height: 520px;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
+  background: #1a1a1a;
+  line-height: 0;           /* Elimina espacio extra */
+  display: block;
+  position: relative;
+}
+
+/* IMAGEN DENTRO (CORREGIDO) */
+.note-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;           /* Elimina espacio inline */
+  vertical-align: bottom;   /* Alinea al borde inferior */
+  margin: 0;
+  padding: 0;
+}
+
+.note-content { width:420px; }
+.note-name { font-family:'Bodoni Moda',serif; font-size:3rem; margin-bottom:20px; }
+.note-type { color:#C7A86B; letter-spacing:.25rem; text-transform:uppercase; font-size:.85rem; margin-bottom:20px; }
+.note-description { color:#999; line-height:2; }
 
     /* ===== CAMPAÑA (con video WEBM) ===== */
     .campaign {
