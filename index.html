@@ -82,111 +82,219 @@
     .hero-model { height:700px; position:relative; }
     #scene-container { width:100%; height:100%; }
 
-    /* ===== COLECCIÓN (con imágenes reales) ===== */
-    .collection { padding:160px 0; background:linear-gradient(180deg,#050505,#090909); }
-    .section-header { text-align:center; margin-bottom:100px; }
-    .section-tag { color:#C7A86B; text-transform:uppercase; letter-spacing:.3rem; font-size:.85rem; margin-bottom:15px; }
-    .section-title { font-size:clamp(3rem,6vw,5rem); margin-bottom:20px; }
-    .section-description { max-width:700px; margin:auto; color:#999; line-height:1.8; }
+/* ===== COLECCIÓN ===== */
+.collection { padding:160px 0; background:linear-gradient(180deg,#050505,#090909); }
+.section-header { text-align:center; margin-bottom:100px; }
+.section-tag { color:#C7A86B; text-transform:uppercase; letter-spacing:.3rem; font-size:.85rem; margin-bottom:15px; }
+.section-title { font-size:clamp(3rem,6vw,5rem); margin-bottom:20px; }
+.section-description { max-width:700px; margin:auto; color:#999; line-height:1.8; }
 
-    .collection-grid {
-      display:grid; grid-template-columns:repeat(3,1fr); gap:40px;
-    }
-    .perfume-card {
-      position:relative; height:650px; overflow:hidden; border-radius:24px;
-      background:linear-gradient(180deg,#111,#050505);
-      border:1px solid rgba(255,255,255,.08);
-      transition:.6s cubic-bezier(0.23,1,0.32,1);
-      cursor:pointer; transform-style:preserve-3d; perspective:1000px;
-    }
-    .perfume-card:hover {
-      transform:translateY(-15px);
-      border-color:rgba(199,168,107,.4);
-      box-shadow:0 0 50px rgba(199,168,107,.12);
-    }
-    .card-image {
-      position:relative; width:100%; height:100%;
-      display:flex; align-items:center; justify-content:center; overflow:hidden;
-    }
-    .card-image img {
-      width:100%; height:100%; object-fit:cover;
-      transition:transform .6s, filter .6s;
-      filter:brightness(0.85) saturate(0.9);
-    }
-    .perfume-card:hover .card-image img {
-      transform:scale(1.05);
-      filter:brightness(1.1) saturate(1.2);
-    }
-    /* fallback si no carga la imagen */
-    .card-image .fallback-text {
-      position:absolute; color:#C7A86B; font-family:'Bodoni Moda',serif; font-size:2rem;
-      letter-spacing:.3rem; text-shadow:0 0 30px rgba(199,168,107,.3);
-      pointer-events:none; z-index:1;
-    }
-    .card-badge {
-      position:absolute; top:20px; right:20px;
-      background:#C7A86B; color:#000; padding:8px 16px; border-radius:30px;
-      font-size:.7rem; font-weight:600; letter-spacing:.1rem; text-transform:uppercase;
-      z-index:10; box-shadow:0 0 20px rgba(199,168,107,.4);
-    }
-    .card-overlay {
-      position:absolute; inset:0;
-      background: linear-gradient(180deg, transparent 20%, rgba(0,0,0,.5) 100%);
-      z-index:2; transition:background .6s;
-    }
-    .perfume-card:hover .card-overlay {
-      background:linear-gradient(180deg, rgba(199,168,107,.1) 0%, rgba(0,0,0,.8) 100%);
-    }
-    .card-content {
-      position:absolute; left:40px; right:40px; bottom:40px; z-index:3;
-      transform:translateY(20px); transition:transform .5s ease;
-    }
-    .perfume-card:hover .card-content { transform:translateY(0); }
-    .card-name {
-      font-size:2.2rem; font-family:'Bodoni Moda',serif; margin-bottom:8px;
-      letter-spacing:.05em; color:#fff; text-shadow:0 2px 20px rgba(0,0,0,.5);
-    }
-    .card-category {
-      color:#C7A86B; letter-spacing:.2rem; font-size:.75rem; text-transform:uppercase;
-      margin-bottom:10px; opacity:.9;
-    }
-    .card-description {
-      color:rgba(255,255,255,.8); line-height:1.7; font-size:.95rem;
-      margin-bottom:18px; text-shadow:0 1px 10px rgba(0,0,0,.3);
-    }
-    .card-btn {
-      display:inline-block; padding:12px 30px;
-      border:1px solid #C7A86B; background:transparent; color:#C7A86B;
-      text-transform:uppercase; font-size:.75rem; letter-spacing:.15rem;
-      cursor:pointer; opacity:0; transform:translateY(15px);
-      transition:all .4s ease; text-decoration:none;
-    }
-    .perfume-card:hover .card-btn { opacity:1; transform:translateY(0); }
-    .card-btn:hover { background:#C7A86B; color:#000; box-shadow:0 0 40px rgba(199,168,107,.3); }
-    .card-image, .card-overlay, .card-content { backface-visibility:hidden; }
+.collection-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:40px;
+}
 
-    /* ===== LEGACY ===== */
-    .legacy { padding:220px 0; background:#070707; overflow:hidden; }
-    .legacy-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:100px; align-items:center; }
-    .legacy-image {
-      position:relative; height:850px; border-radius:30px; overflow:hidden;
-      border:1px solid rgba(255,255,255,.08); background:#1a1a1a;
-    }
-    .legacy-image img { width:100%; height:100%; object-fit:cover; transform:scale(1.15); }
-    .legacy-overlay {
-      position:absolute; inset:0;
-      background:linear-gradient(180deg,transparent,rgba(0,0,0,.3)), linear-gradient(90deg,rgba(0,0,0,.15),rgba(0,0,0,.6));
-    }
-    .legacy-content { max-width:650px; }
-    .legacy-tag { color:#C7A86B; text-transform:uppercase; letter-spacing:.3rem; font-size:.85rem; margin-bottom:25px; }
-    .legacy-title { font-size:clamp(3rem,6vw,5.5rem); line-height:1.05; margin-bottom:30px; }
-    .legacy-text { font-size:1.05rem; line-height:2; color:#a8a8a8; margin-bottom:35px; }
-    .legacy-quote { padding-left:30px; border-left:2px solid #C7A86B; font-size:1.2rem; line-height:1.8; color:#f0f0f0; }
-    .legacy-stats { margin-top:60px; display:flex; gap:60px; flex-wrap:wrap; }
-    .stat { display:flex; flex-direction:column; }
-    .stat-number { font-family:'Bodoni Moda',serif; font-size:3rem; color:#C7A86B; }
-    .stat-label { letter-spacing:.15rem; font-size:.8rem; color:#888; text-transform:uppercase; }
+.perfume-card {
+  position:relative;
+  height:650px;
+  overflow:hidden;
+  border-radius:24px;
+  background:linear-gradient(180deg, #1a1a1a, #0a0a0a); /* fondo común */
+  border:1px solid rgba(255,255,255,.08);
+  transition:.6s cubic-bezier(0.23,1,0.32,1);
+  cursor:pointer;
+  transform-style:preserve-3d;
+  perspective:1000px;
+}
+.perfume-card:hover {
+  transform:translateY(-15px);
+  border-color:rgba(199,168,107,.4);
+  box-shadow:0 0 50px rgba(199,168,107,.12);
+}
 
+.card-image {
+  position:relative;
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+/* Botella base */
+.bottle {
+  width:180px;
+  height:360px;
+  position:relative;
+  border-radius:20px 20px 80px 80px;
+  box-shadow:0 0 30px rgba(199,168,107,.15), inset 0 0 60px rgba(255,255,255,.03);
+  transition:transform .6s, box-shadow .6s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(255,255,255,.08);
+}
+.bottle::before {
+  content:'';
+  position:absolute;
+  top:-40px;
+  left:50%;
+  transform:translateX(-50%);
+  width:40px;
+  height:50px;
+  background:linear-gradient(180deg, #4a4a4a, #2a2a2a);
+  border-radius:8px 8px 0 0;
+  border:1px solid rgba(255,255,255,.08);
+  border-bottom:none;
+}
+.bottle::after {
+  content:'';
+  position:absolute;
+  top:-60px;
+  left:50%;
+  transform:translateX(-50%);
+  width:50px;
+  height:25px;
+  background:linear-gradient(180deg, #C7A86B, #8a6d3b);
+  border-radius:12px 12px 0 0;
+  box-shadow:0 0 30px rgba(199,168,107,.6);
+}
+.bottle .gloss {
+  position:absolute;
+  inset:10px;
+  border-radius:12px 12px 70px 70px;
+  background:linear-gradient(90deg, transparent 25%, rgba(255,255,255,.15) 50%, transparent 75%);
+  pointer-events:none;
+}
+.bottle .bottle-name {
+  font-family:'Bodoni Moda',serif;
+  font-size:1.6rem;
+  letter-spacing:.15rem;
+  color:#C7A86B;
+  text-shadow:0 0 40px rgba(199,168,107,.6);
+  z-index:2;
+  text-align:center;
+  line-height:1.2;
+}
+.perfume-card:hover .bottle {
+  transform:scale(1.05);
+  box-shadow:0 0 60px rgba(199,168,107,.25), inset 0 0 60px rgba(199,168,107,.05);
+}
+
+/* Colores con misma luminosidad */
+.bottle-noir {
+  background: linear-gradient(180deg, #4a1a1a, #1a0505);
+  box-shadow: 0 0 50px rgba(200, 60, 60, 0.3), inset 0 0 60px rgba(200, 60, 60, 0.1);
+}
+.bottle-titan {
+  background: linear-gradient(180deg, #1a2a4a, #0a0a2a);
+  box-shadow: 0 0 50px rgba(60, 100, 200, 0.3), inset 0 0 60px rgba(60, 100, 200, 0.1);
+}
+.bottle-obsidian {
+  background: linear-gradient(180deg, #3a1a0a, #1a0800);
+  box-shadow: 0 0 50px rgba(200, 120, 40, 0.3), inset 0 0 60px rgba(200, 120, 40, 0.1);
+}
+
+.card-badge {
+  position:absolute;
+  top:20px;
+  right:20px;
+  background:#C7A86B;
+  color:#000;
+  padding:8px 16px;
+  border-radius:30px;
+  font-size:.7rem;
+  font-weight:600;
+  letter-spacing:.1rem;
+  text-transform:uppercase;
+  z-index:10;
+  box-shadow:0 0 20px rgba(199,168,107,.4);
+}
+
+.card-overlay {
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, transparent 25%, rgba(0,0,0,.5) 100%); /* menos opaco */
+  z-index:2;
+  transition:background .6s;
+}
+.perfume-card:hover .card-overlay {
+  background:linear-gradient(180deg, rgba(199,168,107,.1) 0%, rgba(0,0,0,.6) 100%);
+}
+
+.card-content {
+  position:absolute;
+  left:40px;
+  right:40px;
+  bottom:40px;
+  z-index:3;
+  transform:translateY(20px);
+  transition:transform .5s ease;
+}
+.perfume-card:hover .card-content { transform:translateY(0); }
+
+.card-name {
+  font-size:2.2rem;
+  font-family:'Bodoni Moda',serif;
+  margin-bottom:8px;
+  letter-spacing:.05em;
+  color:#fff;
+  text-shadow:0 2px 20px rgba(0,0,0,.5);
+}
+.card-category {
+  color:#C7A86B;
+  letter-spacing:.2rem;
+  font-size:.75rem;
+  text-transform:uppercase;
+  margin-bottom:10px;
+  opacity:.9;
+}
+.card-description {
+  color:rgba(255,255,255,.8);
+  line-height:1.7;
+  font-size:.95rem;
+  margin-bottom:18px;
+  text-shadow:0 1px 10px rgba(0,0,0,.3);
+}
+.card-btn {
+  display:inline-block;
+  padding:12px 30px;
+  border:1px solid #C7A86B;
+  background:transparent;
+  color:#C7A86B;
+  text-transform:uppercase;
+  font-size:.75rem;
+  letter-spacing:.15rem;
+  cursor:pointer;
+  opacity:0;
+  transform:translateY(15px);
+  transition:all .4s ease;
+  text-decoration:none;
+}
+.perfume-card:hover .card-btn { opacity:1; transform:translateY(0); }
+.card-btn:hover { background:#C7A86B; color:#000; box-shadow:0 0 40px rgba(199,168,107,.3); }
+
+.card-image, .card-overlay, .card-content { backface-visibility:hidden; }
+
+/* Responsive */
+@media (max-width:992px) {
+  .collection-grid { grid-template-columns:1fr; }
+  .perfume-card { height:550px; }
+}
+@media (max-width:768px) {
+  .perfume-card { height:480px; }
+  .card-content { left:25px; right:25px; bottom:25px; }
+  .card-name { font-size:1.8rem; }
+  .card-badge { top:15px; right:15px; font-size:.6rem; padding:6px 12px; }
+  .card-btn { opacity:1; transform:translateY(0); padding:10px 25px; font-size:.7rem; }
+  .perfume-card:hover .card-content { transform:translateY(0); }
+  .bottle { width:140px; height:280px; }
+  .bottle::before { top:-30px; width:30px; height:40px; }
+  .bottle::after { top:-48px; width:40px; height:20px; }
+  .bottle .bottle-name { font-size:1.2rem; }
+}
     /* ===== NOTES ===== */
     .notes { padding:220px 0; background:radial-gradient(circle at center, rgba(199,168,107,.05), transparent 60%), #050505; }
     .notes-header { text-align:center; margin-bottom:140px; }
@@ -382,89 +490,71 @@
     </div>
   </section>
 
-  <!-- COLECCIÓN -->
-  <section class="collection" id="collection">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Colección Signature</div>
-        <h2 class="section-title">El arte de la presencia</h2>
-        <p class="section-description">Elaborados con ingredientes raros, cada fragancia encarna una expresión diferente de poder, elegancia e individualidad.</p>
+<section class="collection" id="collection">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Colección Signature</div>
+      <h2 class="section-title">El arte de la presencia</h2>
+      <p class="section-description">Elaborados con ingredientes raros, cada fragancia encarna una expresión diferente de poder, elegancia e individualidad.</p>
+    </div>
+
+    <div class="collection-grid">
+      <!-- Noir -->
+      <div class="perfume-card">
+        <div class="card-image">
+          <div class="bottle bottle-noir">
+            <div class="gloss"></div>
+            <span class="bottle-name">NOIR</span>
+          </div>
+          <div class="card-badge">Edición Limitada</div>
+        </div>
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <div class="card-category">Amaderado Especiado</div>
+          <h3 class="card-name">Noir</h3>
+          <p class="card-description">Una composición oscura de oud, pimienta negra y ámbar.</p>
+          <a href="#" class="card-btn">Explorar</a>
+        </div>
       </div>
 
-      <div class="collection-grid">
-        <!-- Noir -->
-        <div class="perfume-card">
-          <div class="card-image">
-            <img src="/furius/Images/Noir.png" alt="Noir" />
-            <span class="fallback-text">NOIR</span>
-            <div class="card-badge">Edición Limitada</div>
+      <!-- Titan -->
+      <div class="perfume-card">
+        <div class="card-image">
+          <div class="bottle bottle-titan">
+            <div class="gloss"></div>
+            <span class="bottle-name">TITAN</span>
           </div>
-          <div class="card-overlay"></div>
-          <div class="card-content">
-            <div class="card-category">Amaderado Especiado</div>
-            <h3 class="card-name">Noir</h3>
-            <p class="card-description">Una composición oscura de oud, pimienta negra y ámbar.</p>
-            <a href="#" class="card-btn">Explorar</a>
-          </div>
+          <div class="card-badge">Nuevo</div>
         </div>
-
-        <!-- Titan -->
-        <div class="perfume-card">
-          <div class="card-image">
-            <img src="/furius/Images/Titan.png" alt="Titan" />
-            <span class="fallback-text">TITAN</span>
-            <div class="card-badge">Nuevo</div>
-          </div>
-          <div class="card-overlay"></div>
-          <div class="card-content">
-            <div class="card-category">Amaderado Aromático</div>
-            <h3 class="card-name">Titan</h3>
-            <p class="card-description">Fortaleza, sofisticación y masculinidad atemporal.</p>
-            <a href="#" class="card-btn">Explorar</a>
-          </div>
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <div class="card-category">Amaderado Aromático</div>
+          <h3 class="card-name">Titan</h3>
+          <p class="card-description">Fortaleza, sofisticación y masculinidad atemporal.</p>
+          <a href="#" class="card-btn">Explorar</a>
         </div>
+      </div>
 
-        <!-- Obsidian -->
-        <div class="perfume-card">
-          <div class="card-image">
-            <img src="/furius/Images/Obsidian.png" alt="Obsidian" />
-            <span class="fallback-text">OBSIDIAN</span>
-            <div class="card-badge">Exclusivo</div>
+      <!-- Obsidian -->
+      <div class="perfume-card">
+        <div class="card-image">
+          <div class="bottle bottle-obsidian">
+            <div class="gloss"></div>
+            <span class="bottle-name">OBSIDIAN</span>
           </div>
-          <div class="card-overlay"></div>
-          <div class="card-content">
-            <div class="card-category">Ambarino Vainilla</div>
-            <h3 class="card-name">Obsidian</h3>
-            <p class="card-description">Una mezcla rica de bergamota, vainilla y maderas preciosas.</p>
-            <a href="#" class="card-btn">Explorar</a>
-          </div>
+          <div class="card-badge">Exclusivo</div>
+        </div>
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <div class="card-category">Ambarino Vainilla</div>
+          <h3 class="card-name">Obsidian</h3>
+          <p class="card-description">Una mezcla rica de bergamota, vainilla y maderas preciosas.</p>
+          <a href="#" class="card-btn">Explorar</a>
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- LEGACY -->
-  <section class="legacy" id="legacy">
-    <div class="container">
-      <div class="legacy-grid">
-        <div class="legacy-image">
-          <img src="/furius/Images/legacy.png" alt="Legado" />
-          <div class="legacy-overlay"></div>
-        </div>
-        <div class="legacy-content">
-          <div class="legacy-tag">Nuestro legado</div>
-          <h2 class="legacy-title">Lujo nacido de la obsesión</h2>
-          <p class="legacy-text">FURIUS MAN nació de una única visión: redefinir el lujo masculino a través de una artesanía excepcional, ingredientes raros y un diseño atemporal. Cada detalle está meticulosamente creado para dejar una presencia inolvidable.</p>
-          <div class="legacy-quote">"El lujo no se trata de ser visto. Se trata de ser recordado."</div>
-          <div class="legacy-stats">
-            <div class="stat"><div class="stat-number">15+</div><div class="stat-label">Ingredientes raros</div></div>
-            <div class="stat"><div class="stat-number">100%</div><div class="stat-label">Hecho a mano</div></div>
-            <div class="stat"><div class="stat-number">∞</div><div class="stat-label">Impacto atemporal</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
+</section>
 
   <!-- NOTES -->
   <section class="notes" id="notes">
