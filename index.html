@@ -133,15 +133,17 @@
   transform:scale(1.05);
   filter:brightness(1.1) saturate(1.2);
 }
+/* Fallback visible siempre */
 .card-image .fallback-text {
   position:absolute;
   color:#C7A86B;
   font-family:'Bodoni Moda',serif;
-  font-size:2rem;
+  font-size:2.5rem;
   letter-spacing:.3rem;
-  text-shadow:0 0 30px rgba(199,168,107,.3);
+  text-shadow:0 0 40px rgba(199,168,107,.5);
   pointer-events:none;
   z-index:1;
+  opacity:1; /* asegura visibilidad */
 }
 
 .card-badge {
@@ -224,6 +226,20 @@
 .card-btn:hover { background:#C7A86B; color:#000; box-shadow:0 0 40px rgba(199,168,107,.3); }
 
 .card-image, .card-overlay, .card-content { backface-visibility:hidden; }
+
+/* Responsive */
+@media (max-width:992px) {
+  .collection-grid { grid-template-columns:1fr; }
+  .perfume-card { height:550px; }
+}
+@media (max-width:768px) {
+  .perfume-card { height:480px; }
+  .card-content { left:25px; right:25px; bottom:25px; }
+  .card-name { font-size:1.8rem; }
+  .card-badge { top:15px; right:15px; font-size:.6rem; padding:6px 12px; }
+  .card-btn { opacity:1; transform:translateY(0); padding:10px 25px; font-size:.7rem; }
+  .perfume-card:hover .card-content { transform:translateY(0); }
+}
 
 /* Responsive */
 @media (max-width:992px) {
@@ -489,12 +505,11 @@
     </div>
 
     <div class="collection-grid">
-
-      <!-- TARJETA 1: NOIR -->
+      <!-- NOIR -->
       <div class="perfume-card">
         <div class="card-image">
-          <img src="/furius/Images/noir.png" alt="Noir" />
-          <span class="fallback-text">NOIR</span>
+          <img src="https://picsum.photos/seed/noir/600/800" alt="Noir" />
+          <div class="fallback-text">NOIR</div>
           <div class="card-badge">Edición Limitada</div>
         </div>
         <div class="card-overlay"></div>
@@ -506,11 +521,11 @@
         </div>
       </div>
 
-      <!-- TARJETA 2: TITAN (exactamente igual que Noir) -->
+      <!-- TITAN -->
       <div class="perfume-card">
         <div class="card-image">
-          <img src="/furius/Images/titan.png" alt="Titan" />
-          <span class="fallback-text">TITAN</span>
+          <img src="https://picsum.photos/seed/titan/600/800" alt="Titan" />
+          <div class="fallback-text">TITAN</div>
           <div class="card-badge">Nuevo</div>
         </div>
         <div class="card-overlay"></div>
@@ -522,11 +537,11 @@
         </div>
       </div>
 
-      <!-- TARJETA 3: OBSIDIAN (exactamente igual que Noir) -->
+      <!-- OBSIDIAN -->
       <div class="perfume-card">
         <div class="card-image">
-          <img src="/furius/Images/obsidian.png" alt="Obsidian" />
-          <span class="fallback-text">OBSIDIAN</span>
+          <img src="https://picsum.photos/seed/obsidian/600/800" alt="Obsidian" />
+          <div class="fallback-text">OBSIDIAN</div>
           <div class="card-badge">Exclusivo</div>
         </div>
         <div class="card-overlay"></div>
@@ -537,11 +552,9 @@
           <a href="#" class="card-btn">Explorar</a>
         </div>
       </div>
-
     </div>
   </div>
 </section>
-
   <!-- NOTES -->
   <section class="notes" id="notes">
     <div class="container">
