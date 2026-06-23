@@ -274,49 +274,58 @@
     .note-type { color:#C7A86B; letter-spacing:.25rem; text-transform:uppercase; font-size:.85rem; margin-bottom:20px; }
     .note-description { color:#999; line-height:2; }
 
-    /* ===== CAMPAIGN ===== */
-    .campaign {
-      position:relative; height:100vh; overflow:hidden;
-      background:radial-gradient(circle at 70% 30%, #1a1a1a, #000);
-    }
-    .campaign-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.5; }
-    .campaign-overlay {
-      position:absolute; inset:0;
-      background:linear-gradient(180deg, rgba(0,0,0,.7), rgba(0,0,0,.4), rgba(0,0,0,.85));
-    }
-    .campaign-content {
-      position:relative; z-index:10; height:100%;
-      display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
-      padding:0 30px;
-    }
-    .campaign-title {
-      font-family:'Bodoni Moda',serif; font-size:clamp(4rem,10vw,10rem);
-      line-height:.9; max-width:1200px; margin-bottom:40px;
-    }
-    .campaign-title span { display:block; }
-    .campaign-text { max-width:800px; font-size:1.15rem; line-height:2; color:#ddd; margin-bottom:50px; }
-    .campaign-btn {
-      padding:20px 50px; border:1px solid #C7A86B; background:transparent; color:#C7A86B;
-      font-size:.95rem; letter-spacing:.15rem; text-transform:uppercase; cursor:pointer; transition:.4s;
-    }
-    .campaign-btn:hover { background:#C7A86B; color:#000; }
+    /* ===== CAMPAÑA ===== */
+.campaign {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(circle at 70% 30%, #1a1a1a, #000);
+}
 
-    .video-fallback {
+.campaign-video {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 70% 30%, #1a1a1a, #000);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7; /* Aumentado de 0.5 a 0.7 para mejor visibilidad */
+  z-index: 1;
+}
+
+.campaign-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.7), rgba(0,0,0,.4), rgba(0,0,0,.85));
+  z-index: 2;
+}
+
+.campaign-content {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 30px;
+}
+
+/* Fallback si no hay vídeo */
+.video-fallback {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: radial-gradient(circle at 70% 30%, #1a1a1a, #000);
   color: #C7A86B;
   font-family: 'Bodoni Moda', serif;
-  font-size: clamp(2rem, 5vw, 4rem);
-  text-align: center;
-  padding: 20px;
+  font-size: clamp(3rem, 8vw, 8rem);
   z-index: 1;
-}
-.campaign-video {
-  position: relative; /* Para que el fallback se posicione dentro */
+  pointer-events: none;
+  opacity: 0.5;
+  letter-spacing: .2rem;
 }
 
     /* ===== CONTACT ===== */
@@ -597,14 +606,14 @@
     </div>
   </section>
 
-  <!-- ===== CAMPAÑA ===== -->
+<!-- ===== CAMPAÑA ===== -->
 <section class="campaign">
   <video class="campaign-video" autoplay muted loop playsinline>
     <source src="/furius/Images/campa.webm" type="video/webm" />
-    <!-- Fallback si el vídeo no carga -->
-    <div class="video-fallback">
-      <span>NO PARA TODOS</span>
-    </div>
+    <!-- Fallback si el webm no funciona -->
+    <source src="/furius/Images/campaign.mp4" type="video/mp4" />
+    <!-- Texto de respaldo si no hay vídeo -->
+    <div class="video-fallback">NO PARA TODOS</div>
   </video>
   <div class="campaign-overlay"></div>
   <div class="campaign-content">
